@@ -1,0 +1,134 @@
+@keyframes spin {
+    to {
+        transform: rotateZ(360deg);
+    }
+}
+
+.spinner {
+    font-size: 50px;
+    text-align: center;
+    animation: 2s spin linear infinite;
+    /* So you name the keyframes animation in the animation:
+    property of the element that you want to influence.  
+    You can say animation: 2s spin linear infinite
+    
+    You could also change out the spin animation for a side-to-side
+    animation in another class that has animation: 2s side-to-side linear infinite*/
+    display: none;
+}
+
+
+.dog-img {
+    display: none;
+}
+
+
+.show {
+    display: block;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+body{
+    background-color: #333;
+}
+
+.menu-sect {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+}
+
+.left-side-menu {
+    width: 70%;
+    height: 100%;
+    font-size: 5vw;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(#e8df16, #9c9510);
+}
+
+.inner-left {
+    /* position: relative; 
+    text-align: left;
+    padding-left: 3vw;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.right-side-menu {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: radial-gradient(#333, #000); */
+    background: radial-gradient(#527805, #3d5a04);
+}
+
+.select-parent {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid black;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.select {
+    position: relative; 
+    text-align: left;
+    padding-left: 3vw;
+    padding: 6px;
+}
+
+.display-section {
+    width: 100%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('./dog-imgs/open-field.jpg');
+    background-size: cover;
+    background-position: center center;
+}
+
+.dogos {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15vh;
+    margin-top: 5vh;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.dog-img {
+    border: 2px solid black;
+    box-shadow: 1px 1px 2px black;
+    min-height: 50vh;
+    max-height: 70vh;
+    border-radius: 30%;
+}
