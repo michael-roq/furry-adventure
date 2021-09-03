@@ -4,8 +4,6 @@ let select = document.querySelector('.select');
 let dogos = document.querySelector('.dogos');
 let imageBox = document.querySelector('.dog-img');
 
-imageBox.style.background = `url('http://placecorgi.com/460/320')`
-
 
 fetch(BREEDS_URL)   
     .then(function(response) {
