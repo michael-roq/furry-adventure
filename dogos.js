@@ -1,8 +1,25 @@
 const BREEDS_URL = "https://dog.ceo/api/breeds/list/all";
 
 let select = document.querySelector('.select');
-let dogos = document.querySelector('.dogos');
-let imageBox = document.querySelector('.dog-img');
+let dogos = document.querySelector('.img-display-card');
+let imageFrame = document.querySelector('.img-display-card__frame');
+let imageBox = document.querySelector('.img-display-card__img');
+
+
+function resizer(ratio){
+
+    console.log(ratio);
+
+    console.log(`The ratio of this image is ${ratio}`);
+
+    if(ratio <= 1.667) {
+        imageBox.style.height = "";
+        imageBox.style.width = "100%";
+    } else {
+        imageBox.style.height = "100%";
+        imageBox.style.width = "";
+    }
+}
 
 
 fetch(BREEDS_URL)   
@@ -45,12 +62,15 @@ select.addEventListener('change', function(event){
 
 });
 
-const img = document.querySelector('.dog-img');
+// const img = document.querySelector('.img-display-card__img');
 const spinner = document.querySelector('.spinner');
 
-function getDogo (url) {
+function getDogo(url) {
+
     spinner.classList.add('show');
-    img.classList.remove('show');
+    dogos.classList.remove('show');
+    console.log(`Dogos classList at this moment is ${dogos.classList}`);
+
     fetch(url)
 
         .then(function (response) {
@@ -58,53 +78,36 @@ function getDogo (url) {
         })
         .then(function (data) {
             console.log(data);
-            img.src = data.message;
-            //spinner.classList.remove('show');
-            //img.classList.add('show')
+            imageBox.src = data.message;
+            // spinner.classList.remove('show');
+            // dogos.classList.add('show');
+
+            var newImage = document.createElement('img');
+            newImage.src = data.message;
+        
+            var poll = setInterval(function () {
+                if (newImage.naturalWidth) {
+                    clearInterval(poll);
+                    console.log(newImage.naturalWidth, newImage.naturalHeight);
+                }
+
+            }, 10);
+
+        
+            newImage.onload = function () { 
+                console.log('Fully loaded');
+                spinner.classList.remove('show');
+                dogos.classList.add('show');
+                let ratio = newImage.naturalWidth/newImage.naturalHeight;
+                resizer(ratio); 
+            }
         })
+    // resizer(img.src);
 }
 
-img.addEventListener("load", function () {
-    spinner.classList.remove('show');
-    img.classList.add('show');
-})
 
 
-
-/* let replaceablePics = `https://dog.ceo/api/breed/${event.target.value}/images/random`
-
-console.log(replaceablePics);
-
-fetch(replaceablePics)
-
-    .then(function(response){
-        return response.json();
-    })
-
-    .then(function(data){
-
-        if(dogos.classList.contains('img')) {
-
-            console.log('Removing old image and adding a new image')
-
-            let image = document.querySelector('img');
-            image.remove();
-
-            const newImg = document.createElement('img');
-            newImg.src = replaceablePics;
-            newImg.alt = 'An Cute Dog'
-
-            document.querySelector('.dogos').appendChild(newImg);
-
-        } else {
-
-        console.log('clean slate.  adding a  new image');
-
-        const newImg = document.createElement('img');
-        newImg.src = replaceablePics;
-        newImg.alt = 'A Cute Dog'
-
-        document.querySelector('.dogos').appendChild(newImg);
-        }
-        
-    }); */
+// imageBox.addEventListener("load", function () {
+//     spinner.classList.remove('show');
+//     dogos.classList.add('show');
+// })
